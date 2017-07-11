@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':commons')
+    compile("org.projectlombok:lombok:1.16.18")
+}

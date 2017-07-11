@@ -1,0 +1,1 @@
+include 'e2e-tests', 'commons', 'license:contracts', 'license:write-side', 'license:read-side'

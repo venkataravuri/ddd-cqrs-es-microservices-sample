@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.4.RELEASE'
+        axonVersion = '3.0.5'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+
+    compile project(':commons')
+    compile project(':license:contracts')
+
+    // Axon CQRS
+    compile("org.axonframework:axon-spring-boot-starter:${axonVersion}")
+    compile("org.axonframework:axon-amqp:${axonVersion}")
+
+    // String Boot
+    compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}")
+
+    // JPA Persistence
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    runtime("mysql:mysql-connector-java")
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+
+    // Pivotal Spring Cloud Services
+//    compile 'io.pivotal.spring.cloud:spring-cloud-services-starter-config-client'
+//    compile 'io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry'
+//    compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
+
+    // Testing
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.axonframework:axon-test:${axonVersion}")
+}
+
