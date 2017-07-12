@@ -1,4 +1,4 @@
-package com.nikhu.ddd.domain.model;
+package com.nikhu.ddd;
 
 /**
  * Created by vravuri on 10-Jul-17.

@@ -1,8 +1,8 @@
 package com.nikhu.ddd.domain.model;
 
-import com.nikhu.ddd.CreateLicenseKeyCommand;
+import com.nikhu.ddd.RegisterLicenseKeyCommand;
 import com.nikhu.ddd.LicenseKey;
-import com.nikhu.ddd.LicenseKeyCreatedEvent;
+import com.nikhu.ddd.LicenseKeyRegisteredEvent;
 import com.nikhu.ddd.LicenseStatus;
 import com.nikhu.ddd.domain.LicenseCommandHandler;
 import org.axonframework.test.aggregate.AggregateTestFixture;
@@ -30,7 +30,7 @@ public class LicenseAggregateTest {
         String id = "bankAccountId";
 
         testFixture.givenNoPriorActivity()
-                .when(new CreateLicenseKeyCommand(id, "acc-1", "prod-1", 10, "/home"))
-                .expectEvents(new LicenseKeyCreatedEvent("acc-1", "prod-1", new LicenseKey("3b6b1416-ea55-4bb6-85b0-f7a8b38e3860", LicenseStatus.INACTIVE), 10));
+                .when(new RegisterLicenseKeyCommand(id, "acc-1", "prod-1", 10, "/home"))
+                .expectEvents(new LicenseKeyRegisteredEvent("acc-1", "prod-1", new LicenseKey("3b6b1416-ea55-4bb6-85b0-f7a8b38e3860", LicenseStatus.INACTIVE), 10));
     }
 }

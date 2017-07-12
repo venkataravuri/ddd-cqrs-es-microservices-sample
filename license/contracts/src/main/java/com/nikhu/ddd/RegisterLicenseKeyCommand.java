@@ -1,18 +1,20 @@
 package com.nikhu.ddd;
 
+import com.niku.ddd.Command;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Value;
 
 /**
  * Created by vravuri on 10-Jul-17.
  */
-@Getter
+
+@Value
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
-public class LicenseKeyCreatedEvent {
+public class RegisterLicenseKeyCommand implements Command {
     private String id;
     private String accountId;
     private String productId;
-    private LicenseKey licenseKey;
-    private Integer quantity;
+    private String licenseKey;
+    private String placeInFolder;
 }
