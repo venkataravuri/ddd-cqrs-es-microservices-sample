@@ -3,7 +3,7 @@ spring:
     name: License Write Side Application
 
   datasource:
-    url: jdbc:mysql://db:3306/license
+    url: jdbc:mysql://localhost:3306/license
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver

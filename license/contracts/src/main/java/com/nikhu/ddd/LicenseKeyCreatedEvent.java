@@ -12,6 +12,7 @@ import lombok.Getter;
 public class LicenseKeyCreatedEvent {
     private String id;
     private String accountId;
+    private String productId;
     private LicenseKey licenseKey;
     private Integer quantity;
 }

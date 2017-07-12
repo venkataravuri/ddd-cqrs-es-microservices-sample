@@ -1,0 +1,65 @@
+buildscript {
+    ext {
+        serenityCoreVersion = "1.4.0"
+        serenityJBehaveVersion = "1.24.0"
+        serenityCucumberVersion = "1.1.36"
+        serenityBrowseWebVersion = "1.1.34"
+    }
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:$serenityCoreVersion")
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "net.serenity-bdd:serenity-core:$serenityCoreVersion",
+                "net.serenity-bdd:serenity-junit:$serenityCoreVersion",
+                "net.serenity-bdd:serenity-screenplay:$serenityCoreVersion",
+                "net.serenity-bdd:browse-the-web:$serenityBrowseWebVersion",
+                "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion",
+                "net.serenity-bdd:serenity-jbehave:$serenityJBehaveVersion"
+    }
+}
+
+apply plugin: "java"
+apply plugin: "net.serenity-bdd.aggregator"
+
+
+println "project.serenity.outputDirectory= ${project.serenity.outputDirectory}"
+
+dependencies {
+    compile localGroovy()
+    compile "net.serenity-bdd:serenity-core:$serenityCoreVersion"
+    compile "net.serenity-bdd:serenity-junit:$serenityCoreVersion"
+    compile("net.serenity-bdd:serenity-screenplay:$serenityCoreVersion")
+    compile("net.serenity-bdd:browse-the-web:$serenityCoreVersion")
+    compile("net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion")
+    compile("net.serenity-bdd:serenity-jbehave:$serenityJBehaveVersion")
+
+
+    compile 'org.slf4j:slf4j-simple:1.7.12'
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'junit:junit:4.12'
+    compile 'com.googlecode.lambdaj:lambdaj:2.3.3'
+    compile 'org.assertj:assertj-core:3.1.0'
+    compile 'org.hamcrest:hamcrest-all:1.3'
+
+}
+
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+    def properties = System.getProperties()
+    systemProperties properties
+    maxParallelForks = 1
+}
+
+jar.dependsOn(aggregate)
+
+gradle.startParameter.continueOnFailure = true
